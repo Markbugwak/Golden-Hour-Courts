@@ -31,7 +31,7 @@ export default function Navbar(){
 
   const signOut=async()=>{await supabase?.auth.signOut();setOpen(false);nav("/")};
   const userLinks=[["Courts","/courts"],["Availability","/availability"],["Reservations","/reservations"]];
-  const adminLinks=[["Dashboard","/admin"],["Bookings","/admin?tab=bookings"],["Courts","/admin?tab=courts"],["Schedule","/admin?tab=schedule"],["Settings","/admin?tab=settings"]];
+  const adminLinks=[["Dashboard","/admin"]];
 
   const linkClass=({isActive})=>isActive
     ?"relative rounded-full bg-white/[.08] px-4 py-2.5 text-[13px] font-bold text-white"
