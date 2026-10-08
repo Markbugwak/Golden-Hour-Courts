@@ -1,5 +1,5 @@
-@import "tailwindcss" source("../src");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import "tailwindcss" source("../src");
 
 :root{--gh-amber:#f5a623;--gh-amber-bright:#ffc34d;--gh-coral:#e87555;--gh-dusk:#07090d;--gh-navy:#10151d;--gh-green:#66846a;--gh-paper:#f4f0e8;font-family:"DM Sans",ui-sans-serif,system-ui,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
