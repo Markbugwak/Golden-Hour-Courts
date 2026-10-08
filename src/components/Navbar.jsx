@@ -40,7 +40,7 @@ export default function Navbar(){
   return <header className="sticky top-0 z-50 border-b border-white/[.08] bg-[#07090d]/90 text-white shadow-[0_10px_40px_rgba(0,0,0,.12)] backdrop-blur-2xl">
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6">
       <Link to="/" className="group flex items-center gap-3" onClick={()=>setOpen(false)}>
-        <span className="relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-white/10 bg-white/[.06]">
+        <span className="relative grid h-10 w-10 place-items-center overflow-hidden">
           <img src="/images/logo/golden-hour-courts.svg" alt="" className="h-7 w-7 transition-transform duration-500 group-hover:scale-110"/>
         </span>
         <span className="hidden text-[13px] font-black tracking-[.12em] sm:block">GOLDEN HOUR <span className="text-amber-400">COURTS</span></span>
