@@ -1,0 +1,1 @@
+@import"tailwindcss";:root{font-family:Inter,system-ui,sans-serif}html{scroll-behavior:smooth}body{margin:0;background:#f5f5f4;color:#171717}::selection{background:#f59e0b;color:#0b0b0b}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
