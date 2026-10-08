@@ -11,7 +11,7 @@ export default function Login(){
   e.preventDefault();setBusy(true);setError("");
   if(!supabase){setError("Supabase is not configured. Add the variables from .env.example.");setBusy(false);return}
   const{error}=await supabase.auth.signInWithPassword({email,password});
-  if(error)setError(error.message);else nav(location.state?.from||"/reservations",{replace:true});
+  if(error)setError(error.message);else{const target=location.state?.from;if(target)nav(target,{replace:true});else{const{data:isAdmin,error:adminError}=await supabase.rpc("current_user_is_admin");nav(!adminError&&isAdmin?"/admin":"/reservations",{replace:true})}}
   setBusy(false)
  };
  return <AuthShell eyebrow="MEMBER ACCESS" title="Welcome back" text="Sign in to manage your reservations and get back on court.">
