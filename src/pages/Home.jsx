@@ -111,7 +111,7 @@ export default function Home(){
    <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(245,166,35,.18),transparent_25%)]"/>
    <div className="relative mx-auto grid max-w-[1400px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_.8fr] lg:px-12">
     <div className="gh-reveal"><span className="text-[10px] font-black tracking-[.25em] text-amber-400">AFTER SUNSET</span><h2 className="mt-5 text-6xl font-black leading-[.82] tracking-[-.065em] sm:text-8xl">WHEN THE SUN GOES DOWN,<br/><span className="text-amber-400">THE GAME GETS BETTER.</span></h2><div className="mt-9 flex items-center gap-6"><div><b className="block text-4xl font-black">4 PM</b><span className="text-[9px] font-black tracking-[.2em] text-white/30">OPEN</span></div><div className="h-10 w-px bg-white/10"/><div><b className="block text-4xl font-black">3 AM</b><span className="text-[9px] font-black tracking-[.2em] text-white/30">CLOSE</span></div></div></div>
-    <div className="gh-night-art gh-reveal"><div className="gh-night-court"/></div>
+    <div className="gh-night-art gh-reveal"><div className="gh-night-scene"><div className="gh-night-glow"/><div className="gh-night-court"><div className="gh-night-net"/><div className="gh-night-centerline"/><div className="gh-night-service service-a"/><div className="gh-night-service service-b"/><span className="gh-night-ball"/></div><div className="gh-night-light light-a"/><div className="gh-night-light light-b"/></div></div>
    </div>
   </section>
 
