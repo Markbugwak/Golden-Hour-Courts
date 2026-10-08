@@ -65,7 +65,7 @@ export default function Home(){
     </div>
     <div className="relative hidden min-h-[520px] lg:block">
      <div className="absolute right-0 top-1/2 w-[min(40vw,560px)] -translate-y-1/2">
-      <div className="gh-hero-frame overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[.035] p-2 shadow-2xl backdrop-blur-sm">
+      <div className="gh-hero-frame">
        {loadHero3D?<Suspense fallback={<div className="grid aspect-square place-items-center rounded-[2rem] bg-white/[.04] text-sm text-white/40">Loading visual…</div>}><Hero3D/></Suspense>:<div className="grid aspect-square place-items-center rounded-[2rem] bg-white/[.025] text-sm text-white/25">Golden hour loading…</div>}
       </div>
       <div className="absolute -bottom-5 -left-10 rounded-2xl border border-white/10 bg-[#10151d]/90 px-5 py-4 shadow-2xl backdrop-blur-xl">
