@@ -1,4 +1,5 @@
 import React,{useCallback,useEffect,useMemo,useState}from"react";
+import{useSearchParams}from"react-router-dom";
 import{BarChart3,CalendarDays,CheckCircle2,Clock3,LockKeyhole,Plus,RefreshCw,Settings2,ShieldCheck,Trash2,Users,XCircle}from"lucide-react";
 import{supabase}from"../lib/supabase";
 
@@ -7,7 +8,8 @@ const dateLabel=value=>new Date(value).toLocaleDateString("en-PH",{month:"short"
 const timeLabel=value=>new Date(value).toLocaleTimeString("en-PH",{hour:"numeric",minute:"2-digit"});
 
 export default function Admin(){
- const[tab,setTab]=useState("overview");
+ const[searchParams,setSearchParams]=useSearchParams();
+ const[tab,setTab]=useState(()=>searchParams.get("tab")||"overview");
  const[data,setData]=useState({bookings:[],payments:[],courts:[],blocks:[],settings:null});
  const[loading,setLoading]=useState(true),[error,setError]=useState(""),[busy,setBusy]=useState("");
  const[rate,setRate]=useState(450),[opening,setOpening]=useState("16:00"),[closing,setClosing]=useState("03:00");
@@ -28,6 +30,16 @@ export default function Admin(){
   setLoading(false);
  },[]);
  useEffect(()=>{load()},[load]);
+ useEffect(()=>{
+  const requested=searchParams.get("tab")||"overview";
+  const valid=["overview","bookings","courts","schedule","settings"];
+  setTab(valid.includes(requested)?requested:"overview");
+ },[searchParams]);
+ const changeTab=next=>{
+  setTab(next);
+  if(next==="overview")setSearchParams({});
+  else setSearchParams({tab:next});
+ };
 
  const stats=useMemo(()=>{
   const confirmed=data.bookings.filter(x=>x.status==="confirmed");
@@ -88,7 +100,7 @@ export default function Admin(){
     <button onClick={load} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-5 text-sm font-black transition hover:-translate-y-0.5"><RefreshCw size={16}/> Refresh</button>
    </div>
    {error&&<div role="alert" className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div>}
-   <div className="mt-8 flex gap-2 overflow-x-auto pb-1">{tabs.map(([id,label,Icon])=><button key={id} onClick={()=>setTab(id)} className={tab===id?"inline-flex shrink-0 items-center gap-2 rounded-full bg-[#10151d] px-4 py-2.5 text-xs font-black text-white":"inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-black text-neutral-500 hover:text-neutral-900"}><Icon size={15}/>{label}</button>)}</div>
+   <div className="mt-8 flex gap-2 overflow-x-auto pb-1">{tabs.map(([id,label,Icon])=><button key={id} onClick={()=>changeTab(id)} className={tab===id?"inline-flex shrink-0 items-center gap-2 rounded-full bg-[#10151d] px-4 py-2.5 text-xs font-black text-white":"inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-black text-neutral-500 hover:text-neutral-900"}><Icon size={15}/>{label}</button>)}</div>
    {loading?<div className="mt-8 rounded-[1.7rem] bg-white p-10 text-neutral-500">Loading control room…</div>:<div className="mt-8">
     {tab==="overview"&&<Overview stats={stats} bookings={data.bookings}/>}
     {tab==="bookings"&&<Bookings bookings={data.bookings} cancel={cancel} busy={busy}/>}
