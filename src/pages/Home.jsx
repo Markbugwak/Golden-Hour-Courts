@@ -1,4 +1,4 @@
-import React,{Suspense,lazy,useEffect,useRef}from"react";
+import React,{Suspense,lazy,useEffect,useRef,useState}from"react";
 import{Link}from"react-router-dom";
 import{ArrowDownRight,ArrowRight,Camera,Clock3,Instagram,MapPin,Play,Users,Zap}from"lucide-react";
 import Button from"../components/Button";
@@ -8,6 +8,20 @@ const Hero3D=lazy(()=>import("../components/Hero3D"));
 
 export default function Home(){
  const ref=useRef(null);
+ const [loadHero3D,setLoadHero3D]=useState(false);
+ useEffect(()=>{
+  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const desktop=window.matchMedia("(min-width: 1024px)").matches;
+  if(!reduced&&desktop){
+   const load=()=>setLoadHero3D(true);
+   if("requestIdleCallback"in window){
+    const id=window.requestIdleCallback(load,{timeout:1200});
+    return()=>window.cancelIdleCallback(id);
+   }
+   const timer=window.setTimeout(load,800);
+   return()=>window.clearTimeout(timer);
+  }
+ },[]);
  useEffect(()=>{
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lenis=new Lenis({autoRaf:true});
@@ -52,7 +66,7 @@ export default function Home(){
     <div className="relative hidden min-h-[520px] lg:block">
      <div className="absolute right-0 top-1/2 w-[min(40vw,560px)] -translate-y-1/2">
       <div className="gh-hero-frame overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[.035] p-2 shadow-2xl backdrop-blur-sm">
-       <Suspense fallback={<div className="grid aspect-square place-items-center rounded-[2rem] bg-white/[.04] text-sm text-white/40">Loading visual…</div>}><Hero3D/></Suspense>
+       {loadHero3D?<Suspense fallback={<div className="grid aspect-square place-items-center rounded-[2rem] bg-white/[.04] text-sm text-white/40">Loading visual…</div>}><Hero3D/></Suspense>:<div className="grid aspect-square place-items-center rounded-[2rem] bg-white/[.025] text-sm text-white/25">Golden hour loading…</div>}
       </div>
       <div className="absolute -bottom-5 -left-10 rounded-2xl border border-white/10 bg-[#10151d]/90 px-5 py-4 shadow-2xl backdrop-blur-xl">
        <div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-full bg-amber-400 text-[#050608]"><Camera size={16}/></span><div><small className="block text-[8px] font-black tracking-[.2em] text-white/30">CONTENT FRIENDLY</small><b className="text-sm">Bring your camera.</b></div></div>
