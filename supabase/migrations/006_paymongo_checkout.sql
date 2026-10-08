@@ -1,6 +1,8 @@
 alter table public.payments add column if not exists provider_checkout_url text;
 
-create or replace function public.prepare_payment(p_booking_id uuid)
+drop function if exists public.prepare_payment(uuid);
+
+create function public.prepare_payment(p_booking_id uuid)
 returns table(
   booking_id uuid,
   booking_reference text,
