@@ -1,0 +1,1 @@
+export const RATE=450;export const slots=()=>{const a=[];for(let m=16*60;m<27*60;m+=60){a.push(String(Math.floor(m/60)%24).padStart(2,"0")+":00")}return a};export const total=(minutes)=>Math.round(RATE*minutes/60);
