@@ -31,7 +31,7 @@ export default function Navbar(){
         {links.map(([label,path])=><NavLink key={path} to={path} className={({isActive})=>isActive?"relative rounded-full bg-white/[.08] px-4 py-2.5 text-[13px] font-bold text-white":"relative rounded-full px-4 py-2.5 text-[13px] font-bold text-white/55 transition hover:bg-white/[.05] hover:text-white"}>{label}</NavLink>)}
         <span className="mx-3 h-5 w-px bg-white/10"/>
         {user
-          ? <button onClick={signOut} className="rounded-full border border-white/12 px-4 py-2.5 text-[13px] font-bold text-white/75 transition hover:border-white/25 hover:bg-white/[.06] hover:text-white">Sign out</button>
+          ? <>{isAdmin&&<Link to="/admin" className="rounded-full border border-amber-400/30 px-4 py-2.5 text-[13px] font-black text-amber-300 transition hover:bg-amber-400/10">Admin</Link>}<button onClick={signOut} className="rounded-full border border-white/12 px-4 py-2.5 text-[13px] font-bold text-white/75 transition hover:border-white/25 hover:bg-white/[.06] hover:text-white">Sign out</button></> 
           : <Link to="/login" className="group inline-flex items-center gap-1 rounded-full bg-amber-400 px-5 py-2.5 text-[13px] font-black text-black shadow-[0_8px_25px_rgba(245,166,35,.18)] transition hover:-translate-y-0.5 hover:bg-amber-300">Sign in <ArrowUpRight size={15}/></Link>}
       </nav>
 
@@ -41,7 +41,7 @@ export default function Navbar(){
     {open&&<nav className="border-t border-white/10 bg-[#07090d] p-3 md:hidden">
       {links.map(([label,path])=><NavLink key={path} to={path} onClick={()=>setOpen(false)} className={({isActive})=>isActive?"block rounded-xl bg-white/[.08] p-3.5 text-sm font-bold text-amber-300":"block rounded-xl p-3.5 text-sm font-bold text-white/70"}>{label}</NavLink>)}
       {user
-        ? <button onClick={signOut} className="mt-1 w-full rounded-xl p-3.5 text-left text-sm font-bold text-white/70">Sign out</button>
+        ? <>{isAdmin&&<Link to="/admin" onClick={()=>setOpen(false)} className="block rounded-xl p-3.5 text-sm font-black text-amber-300">Admin dashboard</Link>}<button onClick={signOut} className="mt-1 w-full rounded-xl p-3.5 text-left text-sm font-bold text-white/70">Sign out</button></>
         : <Link to="/login" onClick={()=>setOpen(false)} className="mt-1 block rounded-xl p-3.5 text-sm font-bold text-amber-300">Sign in</Link>}
     </nav>}
   </header>
