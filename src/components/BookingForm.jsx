@@ -11,11 +11,8 @@ export default function BookingForm({court,date,start,duration}){
   e.preventDefault();setMessage("");
   if(!start){setMessage("Choose a start time first.");return}
   setBusy(true);
-  try{
-   const booking=await createBookingHold({courtId:court.id,date,start,duration});
-   setHold(booking);
-   setMessage("Your 15-minute payment hold is active. Continue to PayMongo to confirm the reservation.");
-  }catch(err){setMessage(err.message||"Unable to create the booking hold.")}
+  try{const booking=await createBookingHold({courtId:court.id,date,start,duration});setHold(booking);setMessage("Your 15-minute payment hold is active. Continue to PayMongo to confirm the reservation.")}
+  catch(err){setMessage(err.message||"Unable to create the booking hold.")}
   finally{setBusy(false)}
  };
  const pay=async()=>{
@@ -24,8 +21,7 @@ export default function BookingForm({court,date,start,duration}){
   const{data,error}=await supabase.functions.invoke("create-paymongo-checkout",{body:{booking_id:hold.id}});
   if(error){setMessage(error.message||"Unable to start payment.");setBusy(false);return}
   if(data?.checkout_url){window.location.assign(data.checkout_url);return}
-  setMessage(data?.error||"Unable to start payment.");
-  setBusy(false);
+  setMessage(data?.error||"Unable to start payment.");setBusy(false);
  };
  return <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
   <form onSubmit={submit} className="gh-card rounded-[1.8rem] p-6 sm:p-7">
