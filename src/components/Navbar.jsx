@@ -5,13 +5,13 @@ import{supabase}from"../lib/supabase";
 
 export default function Navbar(){
   const[open,setOpen]=useState(false);
-  const[user,setUser]=useState(null);
+  const[user,setUser]=useState(null),[isAdmin,setIsAdmin]=useState(false);
   const nav=useNavigate();
 
   useEffect(()=>{
     if(!supabase)return;
-    supabase.auth.getUser().then(({data})=>setUser(data.user));
-    const{data}=supabase.auth.onAuthStateChange((_e,s)=>setUser(s?.user??null));
+    supabase.auth.getUser().then(async({data})=>{setUser(data.user);if(data.user){const r=await supabase.rpc("current_user_is_admin");setIsAdmin(!r.error&&r.data===true)}});
+    const{data}=supabase.auth.onAuthStateChange(async(_e,s)=>{setUser(s?.user??null);if(s?.user){const r=await supabase.rpc("current_user_is_admin");setIsAdmin(!r.error&&r.data===true)}else setIsAdmin(false)});
     return()=>data.subscription.unsubscribe();
   },[]);
 
