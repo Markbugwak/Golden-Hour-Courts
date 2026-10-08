@@ -18,7 +18,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .gh-court-lines{background:repeating-linear-gradient(90deg,transparent 0 18%,rgba(255,255,255,.11) 18% 18.2%,transparent 18.2% 36%),linear-gradient(0deg,transparent 0 49%,rgba(255,255,255,.18) 49% 49.5%,transparent 49.5%)}
 .gh-hero-frame{transform:rotate(2deg);transition:transform .7s cubic-bezier(.2,.8,.2,1)}.gh-hero-frame:hover{transform:rotate(0) scale(1.015)}
 .gh-editorial-image{box-shadow:0 30px 100px rgba(8,11,18,.12)}
-.gh-sunset-art{background:radial-gradient(circle at 72% 18%,rgba(255,211,118,.95) 0 7%,rgba(245,166,35,.55) 20%,transparent 38%),linear-gradient(150deg,#141922 5%,#5d4b43 42%,#d77d45 68%,#f3bb61 100%)}.gh-sunset-art:after{content:"";position:absolute;inset:12% -10% 0 18%;border:2px solid rgba(255,255,255,.2);transform:skewY(-8deg);box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 56px rgba(255,255,255,.025)}
+.gh-sunset-art{background:radial-gradient(circle at 72% 18%,rgba(255,211,118,.95) 0 7%,rgba(245,166,35,.55) 20%,transparent 38%),linear-gradient(150deg,#141922 5%,#5d4b43 42%,#d77d45 68%,#f3bb61 100%)}
 .gh-experience{isolation:isolate}.gh-experience-art{position:absolute;inset:0;z-index:-1;transition:transform .8s cubic-bezier(.2,.8,.2,1)}.gh-experience:hover .gh-experience-art{transform:scale(1.06)}
 .gh-experience-gold .gh-experience-art{background:radial-gradient(circle at 70% 20%,#ffd98a 0 5%,transparent 28%),linear-gradient(145deg,#303127,#9b6846 48%,#e8a55d)}
 .gh-experience-night .gh-experience-art{background:radial-gradient(circle at 60% 35%,rgba(255,190,70,.35),transparent 20%),linear-gradient(145deg,#050608,#17212c 50%,#4b312d)}
